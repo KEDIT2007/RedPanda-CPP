@@ -72,36 +72,11 @@ enum AutoSaveStrategy {
     assAppendFormatedTimeStamp
 };
 
-enum FormatterBraceStyle {
-    fbsDefault,
-    fbsAllman,
-    fbsJava,
-    fbsKR,
-    fbsStroustrup,
-    fbsWitesmith,
-    fbsVtk,
-    fbsRatliff,
-    fbsGNU,
-    fbsLinux,
-    fbsHorstmann,
-    fbs1TBS,
-    fbsGoogle,
-    fbsMozilla,
-    fbsWebkit,
-    fbsPico,
-    fbsLisp
-};
-
 enum FormatterOperatorAlign {
     foaNone,
     foaType,
     foaMiddle,
     foaName
-};
-
-enum FormatterIndentType {
-    fitSpace,
-    fitTab
 };
 
 enum class SplitProcessCommandQuoteType {

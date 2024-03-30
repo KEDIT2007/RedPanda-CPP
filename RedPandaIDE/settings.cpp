@@ -4947,6 +4947,11 @@ QStringList Settings::CodeFormatter::getArguments()
     QStringList paramList;
     paramList.append(QString("BasedOnStyle: %1").arg(mBaseStyle));
     paramList.append(QString("IndentWidth: %1").arg(mTabWidth));
+    paramList.append(QString("TabWidth: %1").arg(mTabWidth));
+    if (mUseTabForIndent)
+        paramList.append("UseTab: ForIndentation");
+    else
+        paramList.append("UseTab: Never");
     return {QString("--style={%1}").arg(paramList.join(", "))};
 }
 
@@ -4961,16 +4966,28 @@ void Settings::CodeFormatter::setTabWidth(int newTabWidth)
     mTabWidth = newTabWidth;
 }
 
+bool Settings::CodeFormatter::useTabForIndent() const
+{
+    return mUseTabForIndent;
+}
+
+void CodeFormatter::setUseTabForIndent(bool newUseTabForIndent)
+{
+    Settings::mUseTabForIndent = newUseTabForIndent;
+}
+
 void Settings::CodeFormatter::doSave()
 {
     saveValue("base_style",mBaseStyle);
     saveValue("tab_width",mTabWidth);
+    saveValue("use_tab_for_indent",mUseTabForIndent);
 }
 
 void Settings::CodeFormatter::doLoad()
 {
     mBaseStyle = stringValue("base_style", "LLVM");
-    mTabWidth = intValue("tab_width",4);
+    mTabWidth = intValue("tab_width", 4);
+    mUseTabForIndent = boolValue("use_tab_for_indent", true);
 }
 
 QString Settings::CodeFormatter::baseStyle() const

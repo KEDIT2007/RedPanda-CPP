@@ -729,10 +729,14 @@ public:
 
         int tabWidth() const;
         void setTabWidth(int newTabWidth);
+        bool useTabForIndent() const;
+        void setUseTabForIndent(bool newUseTabForIndent);
+
     private:
         QString mBaseStyle;
         QString mBraceStyle;
         int mTabWidth;
+        bool mUseTabForIndent;
         // _Base interface
     protected:
         void doSave() override;
