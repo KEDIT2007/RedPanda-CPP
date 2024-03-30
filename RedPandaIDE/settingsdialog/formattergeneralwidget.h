@@ -30,10 +30,8 @@ class FormatterGeneralWidget;
 struct FormatterStyleItem {
     QString name;
     QString description;
-    FormatterBraceStyle style;
     explicit FormatterStyleItem(const QString& name,
-                                const QString& description,
-                                FormatterBraceStyle style);
+                                const QString& description);
 };
 using PFormatterStyleItem = std::shared_ptr<FormatterStyleItem>;
 

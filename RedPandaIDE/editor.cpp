@@ -5159,10 +5159,10 @@ void Editor::reformat(bool doReparse)
     if (readOnly())
         return;
 #ifndef Q_OS_WIN
-    if (!fileExists(pSettings->environment().AStylePath())) {
+    if (!fileExists(pSettings->environment().formatterPath())) {
         QMessageBox::critical(this,
-                              tr("astyle not found"),
-                              tr("Can't find astyle in \"%1\".").arg(pSettings->environment().AStylePath()));
+                              tr("Formatter Not Found"),
+                              tr("Can't find formatter in \"%1\".").arg(pSettings->environment().formatterPath()));
         return;
     }
 #endif
@@ -5172,13 +5172,13 @@ void Editor::reformat(bool doReparse)
     QStringList args = pSettings->codeFormatter().getArguments();
     //qDebug()<<args;
 #ifdef Q_OS_WIN
-    QByteArray newContent = runAndGetOutput("astyle.exe",
+    QByteArray newContent = runAndGetOutput("clang-format.exe",
                                             pSettings->dirs().appDir(),
                                             args,
                                             content);
 #else
-    QByteArray newContent = runAndGetOutput(pSettings->environment().AStylePath(),
-                                            extractFileDir(pSettings->environment().AStylePath()),
+    QByteArray newContent = runAndGetOutput(pSettings->environment().formatterPath(),
+                                            extractFileDir(pSettings->environment().formatterPath()),
                                             args,
                                             content);
 #endif
